@@ -18,13 +18,11 @@ phases:
       - apt-get update  # Update package list
       - apt-get install -y python3 python3-pip  # Install Python and pip
       - python3 -m pip install --upgrade pip  # Upgrade pip to the latest version
-      - pip install pipenv  # Install pipenv for conversion
-      - pipenv lock -r > requirements.txt  # Convert Pipfile to requirements.txt
+      - pip install django gunicorn
   pre_build:
     commands:
       - echo Prebuild ops
       - export LANG=en_US.UTF-8
-      - python3 -m pip install -r requirements.txt  # Install dependencies
   build:
     commands:
       - echo Building the application 
