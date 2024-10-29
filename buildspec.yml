@@ -16,13 +16,13 @@ phases:
     commands:
       - echo Prebuild ops
       - export LANG=en_US.UTF-8
-      - pipenv install
+      - pipenv install 
   build:
     commands:
-      - echo Building the application on `date`
-      - python manage.py migrate
-      - python manage.py test
-      - python manage.py collectstatic
+      - echo Building the application 
+      - pipenv run python manage.py migrate   
+      - pipenv run python manage.py test     
+      - pipenv run python manage.py collectstatic --noinput  
   post_build:
     commands:
       - echo Build completed on `date`
