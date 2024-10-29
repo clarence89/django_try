@@ -22,7 +22,6 @@ phases:
     commands:
       - echo Building the application 
       - pipenv run python manage.py migrate   
-      - pipenv run python manage.py collectstatic --noinput  
   post_build:
     commands:
       - echo Build completed on `date`
