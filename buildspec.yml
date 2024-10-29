@@ -19,6 +19,10 @@ phases:
   build:
     commands:
       - echo Building the application 
+      - pipenv shell
+      - python manage.py migrate
+      - python manage.py test
+      - python manage.py collectstatic
   post_build:
     commands:
       - echo Build completed on `date`
