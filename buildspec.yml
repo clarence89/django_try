@@ -12,17 +12,25 @@ environment_variables:
     OPBEAT_ENABLED: False
 
 phases:
+  install:
+    commands:
+      - echo Installing Python...
+      - apt-get update  # Update package list
+      - apt-get install -y python3 python3-pip  # Install Python and pip
+      - python3 -m pip install --upgrade pip  # Upgrade pip to the latest version
+      - pip install pipenv  # Install pipenv for conversion
+      - pipenv lock -r > requirements.txt  # Convert Pipfile to requirements.txt
   pre_build:
     commands:
       - echo Prebuild ops
       - export LANG=en_US.UTF-8
-      - pipenv install 
+      - python3 -m pip install -r requirements.txt  # Install dependencies
   build:
     commands:
       - echo Building the application 
-      - python manage.py migrate
-      - python manage.py test
-      - python manage.py collectstatic --no-input
+      - python3 manage.py migrate  # Run migrations
+      - python3 manage.py test  # Run tests
+      - python3 manage.py collectstatic --noinput  # Collect static files without user input
   post_build:
     commands:
       - echo Build completed on `date`
