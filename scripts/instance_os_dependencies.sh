@@ -9,4 +9,3 @@ python manage.py makemigrations
 python manage.py migrate
 python manage.py collectstatic --no-input
 python manage.py create_superuser --no-input
-pipenv run gunicorn django_try.wsgi:application --bind 0.0.0.0:8000
