@@ -20,6 +20,7 @@ phases:
   build:
     commands:
       - echo Building the application 
+      - cd /home/ubuntu/django_try
       - pipenv run python manage.py migrate   
       - pipenv run python manage.py test     
       - pipenv run python manage.py collectstatic --noinput  
