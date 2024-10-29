@@ -4,7 +4,6 @@ cd /home/ubuntu/django_try/
 
 pipenv install
 pipenv install gunicorn django
-pipenv shell
-python manage.py makemigrations
-python manage.py migrate
-python manage.py create_superuser --no-input
+pipenv run python manage.py makemigrations
+pipenv run python manage.py migrate
+pipenv run python manage.py create_superuser --no-input
