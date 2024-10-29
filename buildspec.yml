@@ -19,8 +19,7 @@ phases:
       - pipenv install
   build:
     commands:
-      - echo Building the application 
-      - pipenv shell
+      - echo Building the application on `date`
       - python manage.py migrate
       - python manage.py test
       - python manage.py collectstatic
