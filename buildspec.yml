@@ -2,7 +2,7 @@ version: 0.1
 
 environment_variables:
   plaintext:
-    DJANGO_SETTINGS_MODULE: django_try.settings.test
+    DJANGO_SETTINGS_MODULE: config.settings.test
     SECRET_KEY: nosecret
     DATABASE_DEFAULT_URL: sqlite:///db1.sqlite3
     DATABASE_STREAMDATA_URL: sqlite:///db2.sqlite3
@@ -12,23 +12,16 @@ environment_variables:
     OPBEAT_ENABLED: False
 
 phases:
-  install:
-    commands:
-      - echo Installing Python...
-      - apt-get update  # Update package list
-      - apt-get install -y python3 python3-pip  # Install Python and pip
-      - python3 -m pip install --upgrade pip  # Upgrade pip to the latest version
-      - pip install django gunicorn
   pre_build:
     commands:
       - echo Prebuild ops
       - export LANG=en_US.UTF-8
+      - pipenv install 
   build:
     commands:
       - echo Building the application 
-      - python3 manage.py migrate  # Run migrations
-      - python3 manage.py test  # Run tests
-      - python3 manage.py collectstatic --noinput  # Collect static files without user input
+      - pipenv run python manage.py migrate   
+      - pipenv run python manage.py collectstatic --noinput  
   post_build:
     commands:
       - echo Build completed on `date`
