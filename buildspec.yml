@@ -15,6 +15,7 @@ phases:
   pre_build:
     commands:
       - echo Prebuild ops
+      - export LANG=en_US.UTF-8
       - pipenv install
   build:
     commands:
